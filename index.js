@@ -28,13 +28,15 @@ const collectionName = "Pet Frens"
 
 const timer = ms => new Promise(res => setTimeout(res, ms))
 
+const chatId = 'your chat id'
+
 contract.events.Transfer({})
     .on('data', async event => {
         const bot = new TelegramBot(token, { polling: true });
         // @test-chat-id 555108763
         if (event.returnValues.from === '0x0000000000000000000000000000000000000000') {
             try {
-                await bot.sendPhoto(-1001618068341,`${imageStore}/${event.returnValues.tokenId}.png`, { caption: `${collectionName} #${event.returnValues.tokenId} minted! 🎉` })
+                await bot.sendPhoto(chatId,`${imageStore}/${event.returnValues.tokenId}.png`, { caption: `${collectionName} #${event.returnValues.tokenId} minted! 🎉` })
                 await timer(3000); 
             } catch (error) {
                 console.log(error);
