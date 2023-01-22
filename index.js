@@ -33,7 +33,6 @@ const chatId = 'your chat id'
 contract.events.Transfer({})
     .on('data', async event => {
         const bot = new TelegramBot(token, { polling: true });
-        // @test-chat-id 555108763
         if (event.returnValues.from === '0x0000000000000000000000000000000000000000') {
             try {
                 await bot.sendPhoto(chatId,`${imageStore}/${event.returnValues.tokenId}.png`, { caption: `${collectionName} #${event.returnValues.tokenId} minted! 🎉` })
